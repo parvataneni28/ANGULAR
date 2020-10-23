@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
    
     this.backend.getConfig().subscribe(
       res => {
-        console.log('RESPONSE', res)
+        console.log('RESPONSE', res);
       }
     );
   }
