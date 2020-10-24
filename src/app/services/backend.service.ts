@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BackendService {
-  configUrl = 'http://localhost:8080/home';
+  configUrl = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from './services/backend.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,12 @@ import { BackendService } from './services/backend.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private backend: BackendService) { }
+  constructor(private backend: BackendService,
+    public translate: TranslateService) {
+      translate.addLangs(['en', 'nl']);
+      translate.setDefaultLang('en');
+     }
   ngOnInit() {
-   
     this.backend.getConfig().subscribe(
       res => {
         console.log('RESPONSE', res);
