@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { BackendService } from './services/backend.service';
-import { TranslateService } from '@ngx-translate/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { PerformanceService } from './services/performance.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-
-  constructor(private backend: BackendService,
-    public translate: TranslateService) {
-      translate.addLangs(['en', 'nl']);
-      translate.setDefaultLang('en');
-     }
-  ngOnInit() {
-    this.backend.getConfig().subscribe(
-      res => {
-        console.log('RESPONSE', res);
-      }
-    );
-  }
   title = 'angular-spring-project';
+
+  constructor(private performanceService: PerformanceService) {}
+
+  ngOnInit(): void {
+    // Log performance metrics after page load
+    setTimeout(() => {
+      this.performanceService.logPerformanceMetrics();
+    }, 1000);
+  }
 }
